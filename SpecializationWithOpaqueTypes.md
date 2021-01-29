@@ -2,8 +2,8 @@
 
 In this article we combine `opaque` type alias hierarchies with implicit resolutions  to do calculations.
 Scala 3 brings several language enhancements that give programmers even better control over types . One  of them is  ```opaque``` keyword.  
-For deeper look what opaque is please visit  [opaques](http://dotty.epfl.ch/docs/reference/other-new-features/opaques.html) page on [dotty.epfl.ch](dotty.epfl.ch). 
-Let continue with an example and define some types:
+For a deeper look what opaque is please visit  [opaques](http://dotty.epfl.ch/docs/reference/other-new-features/opaques.html) page at [dotty.epfl.ch](dotty.epfl.ch). 
+Let's continue with an example and define some types:
 
 ```scala
 package types {
@@ -24,8 +24,8 @@ package types {
 ```
 
 Let's explain these things a bit.
-We have declared several new type aliases in `types` scope (in our case scope is `package types`). Inside of the `types` scope all of this aliases works as ordinary type aliases, so we can easily create "constructor" functions. Also we declared "base aliases"  named `StringBased` and `IntBased`.  So expression:  `TString1 <: StringBased` we understand that `TString1` is subtype of `StringBased`. 
-Let imagine that we need do an calculation with our new types. Let call our calculation `Transformer` .  
+We have declared several new type aliases in `types` scope (in our case scope is `package types`). Inside of the `types` scope all of these aliases works as ordinary type aliases, so we can easily create "constructor" functions. Also we declared "base aliases"  named `StringBased` and `IntBased`.  So expression:  `TString1 <: StringBased` we understand that `TString1` is subtype of `StringBased`. 
+Let's imagine we need do a calculation with our new types,  let us call it  `Transformer` .  
 
 ```scala
 package transformers {
@@ -43,7 +43,7 @@ package transformers {
 In package `transformers` we defined also basic transformers `stringTransformer`, and `intTransformer`. These functions return input parameter prefixed by some text.
 `given` is new keyword introduced in Scala 3, it is substitution for constructs like `implicit val` or `implicit def`.
 
-Let put everything together in to running example. 
+Let's put everything together into a running example: 
 
 ```scala
 object Main {
@@ -79,5 +79,4 @@ int transformer: 42
 ```
 
 We can easily use type hierarchies for specialization, see : `given  String2Transformer:Transformer[TString2]  ...` .
-One can do more abstraction with [union](http://dotty.epfl.ch/docs/reference/new-types/union-types.html) or [intersection](http://dotty.epfl.ch/docs/reference/new-types/intersection-types.html) types used together with `opaque type` construct.
-
+And of course, one can do more abstraction with [union](http://dotty.epfl.ch/docs/reference/new-types/union-types.html) or [intersection](http://dotty.epfl.ch/docs/reference/new-types/intersection-types.html) types used together with `opaque type` construct.
